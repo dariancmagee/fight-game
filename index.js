@@ -14,6 +14,7 @@ class Sprite {
         this.height = 150
     }
 
+// This fills in the background of the game
     draw() {
         c.fillStyle = 'red'
         c.fillRect(this.position.x, this.position.y, 50, this.height)
@@ -30,6 +31,7 @@ class Sprite {
     }
 }
 
+// Player on the left
 const player = new Sprite({
     position: {
     x: 0,
@@ -40,6 +42,7 @@ const player = new Sprite({
 }
 })
 
+// Player on the right
 const enemy = new Sprite({
     position: {
     x: 400,
