@@ -10,16 +10,20 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 const gravity = 0.7;
 
 class Sprite {
-  constructor({ position, velocity, color = "red" }) {
+  constructor({ position, velocity, color = "red", offset }) {
     this.position = position;
     this.velocity = velocity;
     this.width = 50;
     this.height = 150;
     this.lastKey;
     this.attackBox = {
-      position: this.position,
+      position: {
+        x: this.position.x,
+        y: this.position.y
+    },
+    offset,
       width: 100,
-      height: 50,
+      height: 50
     };
     this.color = color
     this.isAttacking
@@ -31,7 +35,7 @@ class Sprite {
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     // Attack box
-    if (this.isAttacking) {
+    // if (this.isAttacking) {
     c.fillStyle = "green";
     c.fillRect(
       this.attackBox.position.x,
@@ -39,11 +43,13 @@ class Sprite {
       this.attackBox.width,
       this.attackBox.height
     );
-    }
+    // }
   }
 
   update() {
     this.draw();
+    this.attackBox.position.x = this.position.x + this.attackBox.offset.x
+    this.attackBox.position.y = this.position.y
 
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
@@ -71,6 +77,10 @@ const player = new Sprite({
     x: 0,
     y: 10,
   },
+  offset: {
+    x: 0,
+    y: 0
+  }
 });
 
 // Player on the right
@@ -84,6 +94,10 @@ const enemy = new Sprite({
     y: 0,
   },
   color: "blue",
+  offset: {
+    x: -50,
+    y: 0
+  }
 });
 
 console.log(player);
