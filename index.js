@@ -35,7 +35,7 @@ class Sprite {
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     // Attack box
-    // if (this.isAttacking) {
+    if (this.isAttacking) {
     c.fillStyle = "green";
     c.fillRect(
       this.attackBox.position.x,
@@ -43,7 +43,7 @@ class Sprite {
       this.attackBox.width,
       this.attackBox.height
     );
-    // }
+    }
   }
 
   update() {
@@ -179,7 +179,6 @@ animate();
 
 // Event listener that moves the players when keys are pressed
 window.addEventListener("keydown", (event) => {
-  console.log(event.key);
   switch (event.key) {
     case "d":
       keys.d.pressed = true;
@@ -211,7 +210,6 @@ window.addEventListener("keydown", (event) => {
       enemy.isAttacking = true;
       break;
   }
-  console.log(event.key);
 });
 
 window.addEventListener("keyup", (event) => {
@@ -233,5 +231,4 @@ window.addEventListener("keyup", (event) => {
       keys.ArrowLeft.pressed = false;
       break;
   }
-  console.log(event.key);
 });
